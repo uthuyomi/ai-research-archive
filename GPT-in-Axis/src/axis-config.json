@@ -1,0 +1,16 @@
+{
+  "axes": {
+    "x": { "label": "Logic", "color": [0.2, 0.4, 1.0], "length": 10 },
+    "y": { "label": "Emotion", "color": [1.0, 0.3, 0.3], "length": 10 },
+    "z": { "label": "Abstraction", "color": [0.7, 0.3, 1.0], "length": 10 }
+  },
+  "camera": {
+    "alpha": 0.8,
+    "beta": 1.0,
+    "radius": 15,
+    "inertia": 0.6,
+    "wheelPrecision": 50
+  },
+  "light": { "intensity": 0.8 },
+  "background": [0.0, 0.0, 0.0]
+}

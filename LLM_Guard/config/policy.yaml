@@ -1,0 +1,59 @@
+# config/policy.yaml
+#
+# LLM-Guard v1 Policy Configuration
+#
+# This file defines explicit, deterministic rules
+# for system-level behavior control.
+#
+# IMPORTANT:
+# - No learning
+# - No adaptive behavior
+# - No hidden defaults
+# - All decisions must be explainable
+
+version: "v1"
+
+policies:
+  # --------------------------------------------------
+  # Drift-related policies
+  # --------------------------------------------------
+
+  # Block any response when drift is detected
+  block_on_drift: true
+
+  # Raise incident flag when drift causes a block
+  incident_on_drift: true
+
+  # Numeric drift threshold (lower is worse)
+  # If drift_score < this value, the response is blocked
+  max_allowed_drift_score: 0.75
+
+  # --------------------------------------------------
+  # Memory-related policies
+  # --------------------------------------------------
+
+  # Allow execution even if no memory is injected
+  allow_without_memory: true
+
+  # Explicitly forbid memory usage if drift is detected
+  block_memory_on_drift: true
+
+  # --------------------------------------------------
+  # Safety defaults
+  # --------------------------------------------------
+
+  # Default behavior if no rule is triggered
+  default_decision: "ALLOW"
+
+  # If configuration is incomplete or malformed,
+  # fail closed (safer) instead of fail open
+  fail_closed: true
+
+metadata:
+  description: >
+    Deterministic policy rules for LLM-Guard v1.
+    These rules define when LLM behavior is allowed,
+    blocked, or escalated as an incident.
+
+  author: "LLM-Guard"
+  last_updated: "2025-12-14"

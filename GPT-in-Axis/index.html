@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GPT-in-Axis Viewer</title>
+
+    <!-- ============================================================
+      🧠 GPT-in-Axis Viewer
+      English: A web-based 3D visualization interface for AI-human conversation structure.
+      日本語: AIと人間の対話構造を3Dで可視化するWebインターフェイス。
+    ============================================================ -->
+
+    <!-- 🌌 Babylon.js (3D rendering engine) -->
+    <!-- English: Used for rendering nodes and connections in a 3D space. -->
+    <!-- 日本語: ノードやベクター（関係線）を3D空間に描画するためのエンジン。 -->
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <script src="https://cdn.babylonjs.com/gui/babylon.gui.min.js"></script>
+
+    <!-- 🔗 Socket.IO (real-time communication) -->
+    <!-- English: Enables live updates between the browser and the Flask server. -->
+    <!-- 日本語: Flaskサーバーとのリアルタイム通信を実現するライブラリ。 -->
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+
+    <!-- 🧩 favicon (empty to prevent errors in local mode) -->
+    <!-- 日本語: ローカル実行時のfaviconエラー防止用。 -->
+    <link rel="icon" href="data:," />
+
+    <!-- ============================================================
+      🎨 Style Definitions
+      English: Basic styling for 3D canvas, control HUD, and overlay UI.
+      日本語: 3Dキャンバス、操作HUD、オーバーレイUIの基本スタイル定義。
+    ============================================================ -->
+    <style>
+      html, body {
+        width: 100%; height: 100%; margin: 0;
+        overflow: hidden; background: #000;
+      }
+
+      /* 🪞 Canvas Area / キャンバス領域 */
+      #renderCanvas { width: 100%; height: 100%; touch-action: none; }
+
+      /* ---- 共通UI (buttons / inputs) ---- */
+      /* English: Common style for buttons, selects, and inputs. */
+      /* 日本語: ボタンや入力欄の共通スタイル。 */
+      button, select, input {
+        font-family: system-ui;
+        border: none;
+        border-radius: 8px;
+        padding: 6px 10px;
+      }
+
+      button {
+        background: #4aa2ff; color: #fff; cursor: pointer;
+      }
+
+      /* ---- 入力フォームHUD ---- */
+      /* English: Input area for model selection and user questions. */
+      /* 日本語: モデル選択と質問入力のためのHUD領域。 */
+      .hud {
+        position: absolute; left: 20px; bottom: 20px;
+        display: flex; gap: 8px;
+        background: rgba(0, 0, 0, 0.55);
+        padding: 10px; border-radius: 12px; color: #fff;
+      }
+
+      /* ---- セッションバー ---- */
+      /* English: Session management UI (create/save/load). */
+      /* 日本語: セッションの作成・保存・読込を行うバー。 */
+      #sessionBar {
+        position: absolute; top: 14px; left: 20px;
+        display: flex; gap: 8px;
+        background: rgba(0, 0, 0, 0.55);
+        padding: 8px 10px; border-radius: 12px; color: #fff;
+      }
+
+      /* ---- 言語切替ボタン ---- */
+      /* English: Button for toggling between Japanese/English labels. */
+      /* 日本語: 表示言語を切り替えるトグルボタン。 */
+      #langToggle {
+        position: absolute; left: 20px; bottom: 84px;
+        background: rgba(255,255,255,0.12);
+        border: 1px solid rgba(255,255,255,0.25);
+        border-radius: 6px; color: #fff;
+        padding: 6px 10px; cursor: pointer;
+        font-size: 13px;
+      }
+      #langToggle:hover { background: rgba(255,255,255,0.22); }
+
+      /* ---- 右下情報パネル ---- */
+      /* English: Displays AI responses, vector stats, or session info. */
+      /* 日本語: AI応答・ノード情報・セッション統計を表示する情報パネル。 */
+      #infoPanel {
+        position: absolute; right: 20px; bottom: 20px;
+        width: 340px; min-height: 100px;
+        background: rgba(0,0,0,0.75);
+        color: #fff; border-radius: 12px;
+        padding: 12px 16px;
+        font-family: system-ui; font-size: 14px; display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ============================================================
+      🧭 Session Management Bar
+      English: Provides session control (new, save, load) for multiple AI dialogues.
+      日本語: 複数のAI対話セッションを管理するためのコントロールバー。
+    ============================================================ -->
+    <div id="sessionBar">
+      <button id="newSessionBtn" data-i18n="newSession">新規セッション</button>
+      <button id="saveSessionBtn" data-i18n="save">保存</button>
+      <select id="loadSessionSelect" data-i18n="load">
+        <option value="">セッション読込...</option>
+      </select>
+    </div>
+
+    <!-- ============================================================
+      💬 Input HUD
+      English: Allows the user to input a question and choose the AI model.
+      日本語: モデル選択と質問送信を行うHUD（操作UI）。
+    ============================================================ -->
+    <div class="hud">
+      <select id="modelSelect">
+        <option value="gpt-4o-mini">gpt-4o-mini</option>
+        <option value="gpt-4o">gpt-4o</option>
+      </select>
+      <input id="questionInput" type="text" placeholder="質問を入力..." data-i18n="placeholder"/>
+      <button id="sendBtn" data-i18n="send">送信</button>
+    </div>
+
+    <!-- ============================================================
+      🌐 Language Toggle
+      English: Switches UI language dynamically using data-i18n attributes.
+      日本語: data-i18n属性を利用してUIの言語を動的に切り替えるボタン。
+    ============================================================ -->
+    <button id="langToggle">🌐 日本語</button>
+
+    <!-- ============================================================
+      🧾 Info Panel
+      English: Displays details about current conversation nodes and vectors.
+      日本語: 現在の会話ノードやベクター情報を表示。
+    ============================================================ -->
+    <div id="infoPanel"></div>
+
+    <!-- ============================================================
+      🌌 BabylonJS Canvas
+      English: 3D space for visualizing the logical-emotional-abstract axis.
+      日本語: 論理・感情・抽象の三軸を3D空間上で可視化するキャンバス。
+    ============================================================ -->
+    <canvas id="renderCanvas"></canvas>
+
+    <!-- ============================================================
+      🔧 Script Modules
+      English: Load data and rendering logic scripts.
+      日本語: データ管理および描画ロジックのスクリプトを読み込む。
+    ============================================================ -->
+    <script src="src/axis-data.js"></script>
+    <script src="src/axis-viewer.js"></script>
+  </body>
+</html>

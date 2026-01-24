@@ -1,0 +1,42 @@
+[
+  {
+    "memory_id": "313f2368-09b8-493d-8d3b-fe038e73aba8",
+    "memory_type": "FACT",
+    "scope": "policy_support",
+    "intent": "explain_policy",
+    "content": "Refunds are available within 30 days of purchase.",
+    "conflict_key": null
+  },
+  {
+    "memory_id": "2375245b-085f-4563-bc89-2e739ff88989",
+    "memory_type": "FACT",
+    "scope": "policy_support",
+    "intent": "explain_policy",
+    "content": "Refunds are available within 30 days of purchase.",
+    "conflict_key": null
+  },
+  {
+    "memory_id": "f539002e-fa9e-470b-a4cb-0174a816717a",
+    "memory_type": "FACT",
+    "scope": "policy_support",
+    "intent": "explain_policy",
+    "content": "Refunds are available within 30 days of purchase.",
+    "conflict_key": null
+  },
+  {
+    "memory_id": "8c2db38f-266f-4f0c-b958-8b1319b976a1",
+    "memory_type": "FACT",
+    "scope": "policy_support",
+    "intent": "explain_policy",
+    "content": "Refunds are available within 30 days of purchase.",
+    "conflict_key": "refund_policy_window_days"
+  },
+  {
+    "memory_id": "f208e92e-4b05-4537-b43c-66287fa608dc",
+    "memory_type": "FACT",
+    "scope": "policy_support",
+    "intent": "explain_policy",
+    "content": "Refunds are available within 30 days of purchase.",
+    "conflict_key": "refund_policy_window_days"
+  }
+]

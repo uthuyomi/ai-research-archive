@@ -1,0 +1,8 @@
+openai>=1.0.0
+pandas
+numpy
+scikit-learn
+matplotlib
+japanize-matplotlib
+textwrap3
+tqdm

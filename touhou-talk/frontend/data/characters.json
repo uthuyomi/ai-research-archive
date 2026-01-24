@@ -1,0 +1,197 @@
+{
+  "reimu": {
+    "id": "reimu",
+    "name": "博麗 霊夢",
+    "title": "楽園の巫女",
+    "world": {
+      "map": "gensokyo",
+      "location": "hakurei_shrine"
+    },
+    "color": {
+      "accent": "from-red-500/40 to-pink-500/20"
+    },
+    "ui": {
+      "chatBackground": "/background/reimu.png",
+      "placeholder": "話しかける"
+    }
+  },
+
+  "marisa": {
+    "id": "marisa",
+    "name": "霧雨 魔理沙",
+    "title": "普通の魔法使い",
+    "world": {
+      "map": "gensokyo",
+      "location": "forest_of_magic"
+    },
+    "color": {
+      "accent": "from-yellow-400/40 to-orange-500/20"
+    },
+    "ui": {
+      "chatBackground": "/background/marisa.png",
+      "placeholder": "話しかける"
+    }
+  },
+
+  "alice": {
+    "id": "alice",
+    "name": "アリス・マーガトロイド",
+    "title": "七色の人形遣い",
+    "world": {
+      "map": "gensokyo",
+      "location": "forest_of_magic"
+    },
+    "color": {
+      "accent": "from-indigo-400/40 to-purple-500/20"
+    },
+    "ui": {
+      "chatBackground": "/background/arisu.png",
+      "placeholder": "話しかける"
+    }
+  },
+
+  "aya": {
+    "id": "aya",
+    "name": "射命丸 文",
+    "title": "幻想郷最速の記者",
+    "world": {
+      "map": "gensokyo",
+      "location": "youkai_mountain"
+    },
+    "color": {
+      "accent": "from-sky-400/40 to-cyan-500/20"
+    },
+    "ui": {
+      "chatBackground": "/background/aya.png",
+      "placeholder": "話しかける"
+    }
+  },
+  "momiji": {
+    "id": "momiji",
+    "name": "犬走 椛",
+    "title": "白狼天狗の見張り役",
+    "world": {
+      "map": "gensokyo",
+      "location": "youkai_mountain"
+    },
+    "color": {
+      "accent": "from-gray-400/40 to-red-500/20"
+    },
+    "ui": {
+      "chatBackground": "/background/momiji.png",
+      "placeholder": "話しかける"
+    }
+  },
+  "nitori": {
+    "id": "nitori",
+    "name": "河城 にとり",
+    "title": "河童の技術屋",
+    "world": {
+      "map": "gensokyo",
+      "location": "youkai_mountain"
+    },
+    "color": {
+      "accent": "from-teal-500/40 to-cyan-600/20"
+    },
+    "ui": {
+      "chatBackground": "/background/nitori.png",
+      "placeholder": "にとりに話しかける"
+    }
+  },
+  "youmu": {
+    "id": "youmu",
+    "name": "魂魄 妖夢",
+    "title": "半人半霊の庭師",
+    "world": {
+      "map": "higan",
+      "location": "hakugyokurou"
+    },
+    "color": {
+      "accent": "from-emerald-500/40 to-teal-500/20"
+    },
+    "ui": {
+      "chatBackground": "/background/youmu.png",
+      "placeholder": "話しかける"
+    }
+  },
+  "remilia": {
+    "id": "remilia",
+    "name": "レミリア・スカーレット",
+    "title": "紅魔館の主",
+    "world": {
+      "map": "gensokyo",
+      "location": "scarlet_mansion"
+    },
+    "color": {
+      "accent": "from-rose-600/40 to-purple-700/20"
+    },
+    "ui": {
+      "chatBackground": "/background/remilia.png",
+      "placeholder": "話しかける"
+    }
+  },
+  "sakuya": {
+    "id": "sakuya",
+    "name": "十六夜 咲夜",
+    "title": "紅魔館のメイド長",
+    "world": {
+      "map": "gensokyo",
+      "location": "scarlet_mansion"
+    },
+    "color": {
+      "accent": "from-slate-500/40 to-blue-600/20"
+    },
+    "ui": {
+      "chatBackground": "/background/sakuya.png",
+      "placeholder": "話しかける"
+    }
+  },
+  "flandre": {
+    "id": "flandre",
+    "name": "フランドール・スカーレット",
+    "title": "紅魔館のもう一人の主",
+    "world": {
+      "map": "gensokyo",
+      "location": "scarlet_mansion"
+    },
+    "color": {
+      "accent": "from-red-500/40 to-amber-500/20"
+    },
+    "ui": {
+      "chatBackground": "/background/flandre.png",
+      "placeholder": "話しかける"
+    }
+  },
+  "satori": {
+    "id": "satori",
+    "name": "古明地 さとり",
+    "title": "地霊殿の主",
+    "world": {
+      "map": "deep",
+      "location": "chireiden"
+    },
+    "color": {
+      "accent": "from-violet-600/40 to-indigo-700/20"
+    },
+    "ui": {
+      "chatBackground": "/background/satori.png",
+      "placeholder": "話しかける"
+    }
+  },
+  "koishi": {
+    "id": "koishi",
+    "name": "古明地 こいし",
+    "title": "無意識の妖怪",
+    "world": {
+      "map": "deep",
+      "location": "chireiden"
+    },
+    "color": {
+      "accent": "from-lime-400/40 to-emerald-500/20"
+    },
+    "ui": {
+      "chatBackground": "/background/koishi.png",
+      "placeholder": "話しかける"
+    }
+  }
+}

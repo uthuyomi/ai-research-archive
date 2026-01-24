@@ -1,0 +1,25 @@
+{
+  "nodes": [
+    {
+      "id": "q1",
+      "type": "question",
+      "logic": 0.4,
+      "emotion": 0.6,
+      "abstract": 0.3
+    },
+    {
+      "id": "a1",
+      "type": "answer",
+      "logic": 0.4,
+      "emotion": 0.6,
+      "abstract": 0.3
+    }
+  ],
+  "vectors": [
+    {
+      "from": "q1",
+      "to": "a1",
+      "strength": 1
+    }
+  ]
+}
